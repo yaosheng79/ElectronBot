@@ -21,7 +21,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
-#include "i2c.h"
 #include "stm32f0xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -158,24 +157,6 @@ void DMA1_Channel1_IRQHandler(void)
 
   /* USER CODE END DMA1_Channel1_IRQn 1 */
 }
-void DMA1_Channel2_3_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 0 */
-    if(LL_DMA_IsActiveFlag_TC3(DMA1))
-    {
-        //LL_DMA_ClearFlag_GI3(DMA1);
-        LL_DMA_ClearFlag_TC3(DMA1);
-        
-        I2C_SlaveDMARxCpltCallback();  
-        LL_DMA_DisableChannel(DMA1,LL_DMA_CHANNEL_3);
-        LL_DMA_SetDataLength(DMA1,LL_DMA_CHANNEL_3,5);      
-    }    
-  /* USER CODE END DMA1_Channel2_3_IRQn 0 */
-
-  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 1 */
-
-  /* USER CODE END DMA1_Channel2_3_IRQn 1 */
-}
 /**
   * @brief This function handles ADC interrupt.
   */
@@ -202,30 +183,6 @@ void TIM14_IRQHandler(void)
 
   /* USER CODE END TIM14_IRQn 1 */
 }
-
-/**
-  * @brief This function handles I2C1 event global interrupt / I2C1 wake-up interrupt through EXTI line 23.
-  */
-void I2C1_IRQHandler(void)
-{
-  /* USER CODE BEGIN I2C1_IRQn 0 */
-    if(LL_I2C_IsActiveFlag_ADDR(I2C1))
-    {
-        if(LL_I2C_GetTransferDirection(I2C1) == LL_I2C_DIRECTION_WRITE)
-        {
-            LL_DMA_EnableChannel(DMA1,LL_DMA_CHANNEL_3);
-            LL_I2C_ClearFlag_ADDR(I2C1);
-        }
-       
-    }
-
-  /* USER CODE END I2C1_IRQn 0 */
-
-  /* USER CODE BEGIN I2C1_IRQn 1 */
-
-  /* USER CODE END I2C1_IRQn 1 */
-}
-
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

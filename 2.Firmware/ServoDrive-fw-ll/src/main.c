@@ -158,7 +158,6 @@ void SystemClock_Config(void)
   LL_Init1msTick(48000000);
   LL_SetSystemCoreClock(48000000);
   LL_RCC_HSI14_EnableADCControl();
-  LL_RCC_SetI2CClockSource(LL_RCC_I2C1_CLKSOURCE_HSI);
 }
 #elif defined (STM32F030x6)
 void SystemClock_Config(void)
@@ -208,7 +207,6 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   LL_RCC_HSI14_EnableADCControl();
-  LL_RCC_SetI2CClockSource(LL_RCC_I2C1_CLKSOURCE_HSI);
 }
 #endif
 

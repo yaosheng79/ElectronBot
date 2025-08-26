@@ -17,13 +17,13 @@ void Main()
         boardConfig = BoardConfig_t{
             .configStatus = CONFIG_OK,
             .nodeId = 12, // 7bit address, has to be even number
-            .initPos = 90,
-            .toqueLimit =  0.5,
+            .initPos = 180,             // 90,
+            .toqueLimit =  0.9,         // 0.5,
             .velocityLimit=0,
-            .adcValAtAngleMin=250,
-            .adcValAtAngleMax=3000,
-            .mechanicalAngleMin=0,
-            .mechanicalAngleMax=180,
+            .adcValAtAngleMin=50,       // 250,
+            .adcValAtAngleMax=3950,     // 3000,
+            .mechanicalAngleMin=10,     // 0,
+            .mechanicalAngleMax=350,    // 180,
             .dceKp = 10,
             .dceKv = 0,
             .dceKi = 0,
@@ -51,7 +51,7 @@ void Main()
     LL_TIM_OC_SetCompareCH2(TIM3,0);
 
     // Start receive data
-    MY_I2C1_Init(boardConfig.nodeId);
+    // MY_I2C1_Init(boardConfig.nodeId);
     LL_mDelay(10);
     // Start control loop at 200Hz
     LL_TIM_EnableIT_UPDATE(TIM14);
@@ -83,6 +83,7 @@ void Main()
 
 
 // // Command handler
+/*
 void I2C_SlaveDMARxCpltCallback()
 {
     ErrorStatus state;
@@ -214,7 +215,7 @@ void I2C_SlaveDMARxCpltCallback()
     }
 
 }
-
+*/
 
 // Control loop
 void TIM14_PeriodElapsedCallback()

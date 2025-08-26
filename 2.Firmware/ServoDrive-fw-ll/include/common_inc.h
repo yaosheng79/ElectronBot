@@ -10,7 +10,6 @@ extern "C" {
 
 #include "main.h"
 #include "adc.h"
- #include "i2c.h"
 #include "tim.h"
 #include "flash.h"
 
