@@ -44,7 +44,8 @@ void MX_ADC_Init(void)
   /**ADC GPIO Configuration
   PA4   ------> ADC_IN4
   */
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_4;
+  // GPIO_InitStruct.Pin = LL_GPIO_PIN_4;
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_0; // change to PA0
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -80,7 +81,8 @@ void MX_ADC_Init(void)
   /* USER CODE END ADC_Init 1 */
   /** Configure Regular Channel
   */
-  LL_ADC_REG_SetSequencerChAdd(ADC1, LL_ADC_CHANNEL_4);
+  // LL_ADC_REG_SetSequencerChAdd(ADC1, LL_ADC_CHANNEL_4);
+  LL_ADC_REG_SetSequencerChAdd(ADC1, LL_ADC_CHANNEL_0); // change to PA0
   /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
   */
   ADC_InitStruct.Clock = LL_ADC_CLOCK_ASYNC;
